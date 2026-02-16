@@ -1,0 +1,22 @@
+:root {
+  /* Core Light Theme */
+  --color-background: #ffffff;
+  --color-primary: #111111;        /* sidebar */
+  --color-surface: #f3f3f3;        /* cards / chips */
+  --color-border: #a7a5a5;
+
+  /* Text */
+  --color-text: #111111;
+  --color-text-muted: #292727;
+
+  /* Accent (monochrome) */
+  --color-accent: #000000;
+
+  /* Effects */
+  --shadow-soft: 0 4px 14px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+  /* Typography */
+  --font-heading: "Poppins", sans-serif;
+  --font-body: "Inter", sans-serif;
+}

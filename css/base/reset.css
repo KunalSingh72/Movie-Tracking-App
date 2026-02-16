@@ -1,0 +1,83 @@
+/* ================================
+   CSS RESET
+   Purpose: Remove browser defaults
+   Scope: Neutral only (no design)
+   ================================ */
+
+/* Box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Set core body defaults */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* Remove list styles */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Remove link underline and inherit color */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Images behave predictably */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Form elements inherit fonts */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+/* Button cursor */
+button {
+  cursor: pointer;
+}
+
+
+/* Prevent text overflow issues */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* Remove default focus outlines (you will style them later) */
+:focus {
+  outline: none;
+}
