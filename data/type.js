@@ -1,0 +1,1 @@
+const type = ["All", "Movies", "Tv Series", "➕"];

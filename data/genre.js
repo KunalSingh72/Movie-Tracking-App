@@ -1,0 +1,1 @@
+genre = ["All", "Action", "Adventure", "Drama","➕ Add Genre"];

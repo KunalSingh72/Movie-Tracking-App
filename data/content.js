@@ -1,29 +1,32 @@
-const Content = [
+let content = [
   {
-    id: "Fast-and-Furious",
+    id: "1",
     name: "Fast and Furious",
-    Date: "4/5/26",
+    date: "2004-05-26",
     genre: ["Action", "Adventure"],
     type: "Movie",
     rating: 4.5,
   },
   {
+    id: "2",
     name: "Fast and Furious",
-    Date: "4/5/26",
+    date: "2004-05-26",
     genre: ["Action", "Adventure"],
     type: "Movie",
     rating: 4.5,
   },
   {
+    id: "3",
     name: "Fast and Furious",
-    Date: "4/5/26",
+    date: "2004-05-26",
     genre: ["Action", "Adventure"],
     type: "Movie",
     rating: 4.5,
   },
   {
+    id: "4",
     name: "Fast and Furious",
-    Date: "4/5/26",
+    date: "2004-05-26",
     genre: ["Action", "Adventure"],
     type: "Movie",
     rating: 4.5,

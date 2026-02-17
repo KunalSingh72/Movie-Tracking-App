@@ -17,115 +17,14 @@
   <body>
     <div class="layout">
       <aside class="left-sidebar">
-        <div class="type-chip">
-          <button class="type-name">All</button>
-          <button class="type-name">Movies</button>
-          <button class="type-name">Tv Series</button>
-          <button class="type-name">➕</button>
-        </div>
+        <div class="type-chip"></div>
       </aside>
 
       <main class="main">
-        <div class="genre-bar">
-          <button class="genre-chip" data-genre="action">
-            <span class="genre-name">Action</span>
-
-            <div class="genre-progress" aria-hidden="true">
-              <span class="block filled"></span>
-              <span class="block filled"></span>
-              <span class="block filled"></span>
-              <span class="block filled"></span>
-              <span class="block"></span>
-              <span class="block"></span>
-              <span class="block"></span>
-              <span class="block"></span>
-              <span class="block"></span>
-              <span class="block"></span>
-            </div>
-          </button>
-          <button class="genre-chip" data-genre="action">
-            <span class="genre-name">Adventure</span>
-
-            <div class="genre-progress" aria-hidden="true">
-              <span class="block filled"></span>
-              <span class="block filled"></span>
-              <span class="block filled"></span>
-              <span class="block filled"></span>
-              <span class="block"></span>
-              <span class="block"></span>
-              <span class="block"></span>
-              <span class="block"></span>
-              <span class="block"></span>
-              <span class="block"></span>
-            </div>
-          </button>
-          <button class="genre-chip" data-genre="action">
-            <span class="genre-name">Drama</span>
-
-            <div class="genre-progress" aria-hidden="true">
-              <span class="block filled"></span>
-              <span class="block filled"></span>
-              <span class="block filled"></span>
-              <span class="block filled"></span>
-              <span class="block"></span>
-              <span class="block"></span>
-              <span class="block"></span>
-              <span class="block"></span>
-              <span class="block"></span>
-              <span class="block"></span>
-            </div>
-          </button>
-          <button class="genre-chip" data-genre="action">
-            <span class="genre-name">➕ Add Genre</span>
-          </button>
-        </div>
+        <div class="genre-bar"></div>
 
         <button class="add-content open-modal-btn">➕ Add</button>
-        <div class="content-grid">
-          <div class="content-container">
-            <div class="content-name">Fast and Furious</div>
-
-            <div class="content-info-container">
-              <p><span>Date:</span> 4/5/26</p>
-              <p><span>Genre:</span> Action, Adventure</p>
-              <p><span>Type:</span> Movie</p>
-              <p><span>Rating:</span> 4.5</p>
-            </div>
-          </div>
-
-          <div class="content-container js-content-container">
-            <div class="content-name">Fast and Furious</div>
-
-            <div class="content-info-container">
-              <p><span>Date:</span> 4/5/26</p>
-              <p><span>Genre:</span> Action, Adventure</p>
-              <p><span>Type:</span> Movie</p>
-              <p><span>Rating:</span> 4.5</p>
-            </div>
-          </div>
-
-          <div class="content-container">
-            <div class="content-name">Fast and Furious</div>
-
-            <div class="content-info-container">
-              <p><span>Date:</span> 4/5/26</p>
-              <p><span>Genre:</span> Action, Adventure</p>
-              <p><span>Type:</span> Movie</p>
-              <p><span>Rating:</span> 4.5</p>
-            </div>
-          </div>
-
-          <div class="content-container">
-            <div class="content-name">Fast and Furious</div>
-
-            <div class="content-info-container">
-              <p><span>Date:</span> 4/5/26</p>
-              <p><span>Genre:</span> Action, Adventure</p>
-              <p><span>Type:</span> Movie</p>
-              <p><span>Rating:</span> 4.5</p>
-            </div>
-          </div>
-        </div>
+        <div class="content-grid"></div>
       </main>
 
 <!-- Modal -->
@@ -142,23 +41,23 @@
     <form class="modal-form">
 
       <div class="form-group">
-        <label for="movie-name" class="added-content-name">Name</label>
+        <label for="movie-name">Name</label>
         <input type="text" id="movie-name" placeholder="Enter title..." required />
       </div>
 
       <div class="form-group">
-        <label for="finished-date" class="added-content-date">Date</label>
+        <label for="finished-date">Date</label>
         <input type="date" id="finished-date" required />
       </div>
 
       <div class="form-group">
-        <label for="rating" class="added-content-rating">Rating</label>
+        <label for="rating">Rating</label>
         <input type="number" id="rating" min="0" max="5" step="0.1" placeholder="0 - 10" required />
       </div>
 
       <div class="form-group">
         <label for="genre">Genre</label>
-        <input list="genre-options" id="genre" class="added-content-genre" placeholder="Select or type..." required />
+        <input list="genre-options" id="genre" placeholder="Select or type..." required />
         <datalist id="genre-options">
           <option value="Action">
           <option value="Adventure">
@@ -171,7 +70,7 @@
 
       <div class="form-group">
         <label for="type">Type</label>
-        <input list="type-options" id="type" class="added-content-type" placeholder="Select or type..." required />
+        <input list="type-options" id="type" placeholder="Select or type..." required />
         <datalist id="type-options">
           <option value="Movie">
           <option value="TV Show">
@@ -190,6 +89,8 @@
 </div>
 
   </body>
+  <script src="data/type.js"></script>
+  <script src="data/genre.js"></script>
   <script src="data/content.js"></script>
   <script src="scripts/main.js"></script>
 </html>

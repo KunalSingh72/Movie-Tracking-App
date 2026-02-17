@@ -1,52 +1,143 @@
 // Elements
 
-const contentContainer = document.querySelector(".js-content-container");
 const modal = document.getElementById("modal");
-const openModal = document.querySelector(".open-modal-btn");
-const closeModal = document.querySelector(".modal-close");
+const openModalBtn = document.querySelector(".open-modal-btn");
+const closeModalBtn = document.querySelector(".modal-close");
 const modalCancelBtn = document.querySelector(".btn-secondary");
-const selectContent = document.querySelectorAll(".");
+const form = document.querySelector(".modal-form");
 
-// EventListeners
-openModal.addEventListener("click", () => {
-  modal.style.display = "flex";
-});
+// Default Calling
+renderContent();
+renderGenre();
+renderType();
 
-closeModal.addEventListener("click", () => {
-  modal.style.display = "none";
-});
+function renderContent() {
+  // Render Content Data
+  let contentData = "";
+  content.forEach((item) => {
+    contentData += `
+    <div data-content-id="${item.id}" class="content-container">
+      <div class="content-name">${item.name}</div>
 
-modalCancelBtn.addEventListener("click", () => {
-  modal.style.display = "none";
-});
+      <div class="content-info-container">
+        <p><span>Date:</span> ${item.date}</p>
+        <p><span>Genre:</span> ${item.genre}</p>
+        <p><span>Type:</span> ${item.type}</p>
+        <p><span>Rating:</span> ${item.rating}</p>
+      </div>
+    </div>
+  `;
+  });
+  document.querySelector(".content-grid").innerHTML = contentData;
+  attachContentClickEvents();
+}
+
+function renderGenre() {
+  // Loading Genre Data
+  let genreData = "";
+  genre.forEach((genreContent) => {
+    genreData += `
+    <button class="genre-chip" data-genre="action">
+            <span class="genre-name">${genreContent}</span>
+
+            <div class="genre-progress" aria-hidden="true">
+              <span class="block filled"></span>
+              <span class="block filled"></span>
+              <span class="block filled"></span>
+              <span class="block filled"></span>
+              <span class="block"></span>
+              <span class="block"></span>
+              <span class="block"></span>
+              <span class="block"></span>
+              <span class="block"></span>
+              <span class="block"></span>
+            </div>
+          </button>
+  `;
+  });
+  document.querySelector(".genre-bar").innerHTML = genreData;
+}
+
+function renderType() {
+  // Loading type Data
+  let typeData = "";
+  type.forEach((typeContent) => {
+    typeData += `
+    <button class="type-name">${typeContent}</button>
+  `;
+  });
+  document.querySelector(".type-chip").innerHTML = typeData;
+}
+
+function attachContentClickEvents() {
+  document
+    .querySelectorAll(".content-container")
+    .forEach((contentContainer) => {
+      contentContainer.addEventListener("click", () => {
+        const contentId = contentContainer.dataset.contentId;
+        const selectedItem = content.find((item) => item.id === contentId);
+
+        if (selectedItem) {
+          openModalBox(selectedItem);
+        }
+      });
+    });
+}
+
+openModalBtn.addEventListener("click", () => openModalBox());
+
+closeModalBtn.addEventListener("click", closeModal);
+modalCancelBtn.addEventListener("click", closeModal);
 
 modal.addEventListener("click", (e) => {
   if (e.target === modal) {
-    modal.style.display = "none";
+    closeModal();
   }
 });
 
-const form = document.querySelector(".modal-form");
+function openModalBox(item = null) {
+  if (item) {
+    document.getElementById("movie-name").value = item.name;
+    document.getElementById("finished-date").value = item.date;
+    document.getElementById("rating").value = item.rating;
+    document.getElementById("genre").value = item.genre;
+    document.getElementById("type").value = item.type;
+
+    form.dataset.editId = item.id;
+  } else {
+    form.reset();
+    delete form.dataset.editId;
+  }
+
+  modal.style.display = "flex";
+}
+
+function closeModal() {
+  modal.style.display = "none";
+}
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  modal.style.display = "none";
 
-  // console.log("Form submitted without reload");
+  const id = form.dataset.editId;
+
+  if (id) {
+    updateContent(id);
+  }
+
+  renderContent();
+  closeModal();
 });
 
 
-// Functions
+function updateContent(id) {
+  const item = content.find((item) => item.id === id);
 
+  if (!item) return;
 
-
-/*
-function saveData() {
-  const name = document.querySelector(".added-content-name");
-  const date = document.querySelector(".added-content-date");
-  const type = document.querySelector(".added-content-type");
-  const rating = document.querySelector(".added-content-rating");
-  const ContentName = document.querySelector(".added-content-genre");
-  
+  item.name = document.getElementById("movie-name").value;
+  item.date = document.getElementById("finished-date").value;
+  item.rating = document.getElementById("rating").value;
+  item.genre = document.getElementById("genre").value;
+  item.type = document.getElementById("type").value;
 }
-*/
