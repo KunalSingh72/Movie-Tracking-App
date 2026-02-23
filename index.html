@@ -46,38 +46,60 @@
       </div>
 
       <div class="form-group">
-        <label for="finished-date">Date</label>
-        <input type="date" id="finished-date" required />
+        <label for="number-of-parts">Parts/Seasons</label>
+        <input type="number" id="number-of-parts" min="1" max="100" step="1" placeholder="1 - 100" required />
       </div>
 
       <div class="form-group">
         <label for="rating">Rating</label>
-        <input type="number" id="rating" min="0" max="5" step="0.1" placeholder="0 - 10" required />
-      </div>
-
-      <div class="form-group">
-        <label for="genre">Genre</label>
-        <input list="genre-options" id="genre" placeholder="Select or type..." required />
-        <datalist id="genre-options">
-          <option value="Action">
-          <option value="Adventure">
-          <option value="Drama">
-          <option value="Comedy">
-          <option value="Thriller">
-          <option value="Sci-Fi">
-        </datalist>
+        <input type="number" id="rating" min="0" max="10" step="0.1" placeholder="0 - 10" required />
       </div>
 
       <div class="form-group">
         <label for="type">Type</label>
-        <input list="type-options" id="type" placeholder="Select or type..." required />
-        <datalist id="type-options">
-          <option value="Movie">
-          <option value="TV Show">
-          <option value="Web Series">
-          <option value="Documentary">
-        </datalist>
+        <select name="media-type" id="type" required>
+          <option value="">Select media type</option>
+          <option value="Movie">Movie</option>
+          <option value="TV Show">TV Show</option>
+          <option value="Web Series">Web Series</option>
+          <option value="Anime Movie">Anime Movie</option>
+          <option value="Anime Series">Anime Series</option>
+          <option value="Animation">Animation</option>
+          <option value="Documentary">Documentary</option>
+          <option value="Book">Book</option>
+          <option value="Manga">Manga</option>
+          <option value="Comic">Comic</option>
+        </select>
       </div>
+
+      <div class="form-group">
+        <label for="genre">Genre</label>
+        <select id="genre" multiple required>
+          <option value="Action">Action</option>
+          <option value="Adventure">Adventure</option>
+          <option value="Comedy">Comedy</option>
+          <option value="Crime">Crime</option>
+          <option value="Dark-Comedy">Dark-Comedy</option>
+          <option value="Dark-Fantasy">Dark-Fantasy</option>
+          <option value="Drama">Drama</option>
+          <option value="Fantasy">Fantasy</option>
+          <option value="Historical">Historical</option>
+          <option value="Thriller">Horror</option>
+          <option value="Musical">Musical</option>
+          <option value="Mystery">Mystery</option>
+          <option value="Post-Apocalyptic">Post-Apocalyptic</option>
+          <option value="Drama">Romance</option>
+          <option value="Sci-Fi">Sci-Fi</option>
+          <option value="Seinen">Seinen</option>
+          <option value="Shonen">Shonen</option>
+          <option value="Slice-of-Life">Slice of Life</option>
+          <option value="Dark-Fantasy">Supernatural</option>
+          <option value="Suspense">Suspense</option>
+          <option value="Thriller">Thriller</option>
+          <option value="Tragedy">Tragedy</option>
+        </select>
+      </div>
+
 
       <div class="modal-actions">
         <button type="button" class="btn-danger">Delete</button>
@@ -90,9 +112,6 @@
 </div>
 
   </body>
-  <script src="data/data.js"></script>
-  <script src="scripts/storage.js"></script>
-  <script src="scripts/render.js"></script>
-  <script src="scripts/modal.js"></script>
-  <script src="scripts/main.js"></script>
+  
+  <script type="module" src="scripts/main.js"></script>
 </html>

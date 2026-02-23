@@ -1,4 +1,8 @@
-const modal = document.getElementById("modal");
+import { content } from "../data/data.js";
+import { saveContentToLocal } from "./storage.js";
+import { renderAllData } from "./render.js";
+
+const modalOverlay = document.querySelector(".modal-overlay");
 const openModalBtn = document.querySelector(".open-modal-btn");
 const closeModalBtn = document.querySelector(".modal-close");
 const modalCancelBtn = document.querySelector(".btn-secondary");
@@ -12,24 +16,30 @@ deleteBtn.addEventListener("click", () => {
   if (!id) return;
 
   deleteContent(id);
-  saveToLocalStorage();
-  renderContent();
+  saveContentToLocal();
+  renderAllData();
+
   closeModal();
 });
 modalCancelBtn.addEventListener("click", closeModal);
 
-modal.addEventListener("click", (e) => {
-  if (e.target === modal) {
+modalOverlay.addEventListener("click", (e) => {
+  if (e.target === modalOverlay) {
     closeModal();
   }
 });
 
-function openModalBox(item = null) {
+export function openModalBox(item = null) {
   if (item) {
+    const genreSelect = document.getElementById("genre");
     document.getElementById("movie-name").value = item.name;
-    document.getElementById("finished-date").value = item.date;
+    document.getElementById("number-of-parts").value = item.parts;
     document.getElementById("rating").value = item.rating;
-    document.getElementById("genre").value = item.genre;
+    document.getElementById("genre").value = Array.from(
+      genreSelect.options,
+    ).forEach((option) => {
+      option.selected = item.genre.includes(option.value);
+    });
     document.getElementById("type").value = item.type;
 
     form.dataset.editId = item.id;
@@ -41,7 +51,7 @@ function openModalBox(item = null) {
     deleteBtn.style.display = "none";
   }
 
-  modal.style.display = "flex";
+  modalOverlay.style.display = "flex";
 }
 
 form.addEventListener("submit", (e) => {
@@ -54,27 +64,38 @@ form.addEventListener("submit", (e) => {
   } else {
     createContent();
   }
-
-  saveToLocalStorage();
-  renderContent();
+  saveContentToLocal();
+  renderAllData();
   closeModal();
 });
 
 function closeModal() {
-  modal.style.display = "none";
+  modalOverlay.style.display = "none";
 }
 
 function deleteContent(id) {
-   content = content.filter((item) => item.id !== id);
+  const index = content.findIndex((item) => item.id === id);
+  if (index !== -1) {
+    content.splice(index, 1);
+  }
 }
 
 function createContent() {
+  const genreSelect = document.getElementById("genre");
+  const selectedGenres = Array.from(genreSelect.selectedOptions).map(
+    (option) => option.value,
+  );
+  if (selectedGenres.length === 0) {
+    alert("Select at least one genre");
+    return;
+  }
+
   const newItem = {
     id: Date.now().toString(),
     name: document.getElementById("movie-name").value,
-    date: document.getElementById("finished-date").value,
-    rating: document.getElementById("rating").value,
-    genre: document.getElementById("genre").value,
+    parts: Number(document.getElementById("number-of-parts").value),
+    rating: Number(document.getElementById("rating").value),
+    genre: selectedGenres,
     type: document.getElementById("type").value,
   };
 
@@ -86,9 +107,13 @@ function updateContent(id) {
 
   if (!item) return;
 
+  const genreSelect = document.getElementById("genre");
+
   item.name = document.getElementById("movie-name").value;
-  item.date = document.getElementById("finished-date").value;
-  item.rating = document.getElementById("rating").value;
-  item.genre = document.getElementById("genre").value;
+  item.parts = Number(document.getElementById("number-of-parts").value);
+  item.rating = Number(document.getElementById("rating").value);
+  item.genre = Array.from(genreSelect.selectedOptions).map(
+    (option) => option.value,
+  );
   item.type = document.getElementById("type").value;
 }

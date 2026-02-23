@@ -1,11 +1,18 @@
-function loadFromLocalStorage() {
-  const storedData = localStorage.getItem("contentData");
+import { content } from "../data/data.js";
 
-  if (storedData) {
-    content = JSON.parse(storedData);
+export function loadFromLocalStorage() {
+  const storedContentData = localStorage.getItem("contentData");
+
+  if (storedContentData) {
+    try {
+      content.length = 0;
+      content.push(...JSON.parse(storedContentData));
+    } catch {
+      localStorage.removeItem("contentData");
+    }
   }
 }
 
-function saveToLocalStorage() {
+export function saveContentToLocal() {
   localStorage.setItem("contentData", JSON.stringify(content));
 }

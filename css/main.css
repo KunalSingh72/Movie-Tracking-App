@@ -166,6 +166,11 @@ body {
   color: var(--color-text);
 }
 
+.empty-state {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.6);
+}
+
 /* ========================= */
 /* Modal */
 /* ========================= */
@@ -253,7 +258,7 @@ body {
   font-size: 0.9rem;
 }
 
-.form-group input {
+.form-group input, .form-group select  {
   padding: 10px 12px;
   border-radius: 10px;
   border: 2px solid var(--color-border);
@@ -317,6 +322,7 @@ body {
   cursor: pointer;
   font-weight: 600;
   transition: 0.2s ease;
+  display: none;
 }
 
 .btn-danger:hover {
