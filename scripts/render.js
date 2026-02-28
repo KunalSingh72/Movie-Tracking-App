@@ -1,17 +1,21 @@
 import { content } from "../data/data.js";
+import { displayContentByGenre, displayContentByType } from "./filter.js";
 import { openModalBox } from "./modal.js";
 
 export function renderAllData() {
   renderContent();
   renderGenre();
   renderType();
+
+  displayContentByGenre();
+  displayContentByType();
 }
 
-export function renderContent() {
+export function renderContent(data = content) {
   // Render Content Data
   let contentHTML = "";
 
-  content.forEach((item) => {
+  data.forEach((item) => {
     contentHTML += `
       <div data-content-id="${item.id}" class="content-container">
         <div class="content-name">${item.name}</div>
@@ -25,7 +29,7 @@ export function renderContent() {
       </div>
     `;
   });
-  if (content.length === 0) {
+  if (data.length === 0) {
     contentHTML = `<p class="empty-state">No content added yet.</p>`;
   }
 
@@ -64,7 +68,7 @@ export function renderGenre() {
     const filledBlocks =
       totalContent === 0
         ? 0
-        : Math.round((count / totalContent) * TOTAL_BLOCKS) + 1;
+        : Math.round((count / totalContent) * TOTAL_BLOCKS);
 
     let blocksHTML = "";
     for (let i = 0; i < TOTAL_BLOCKS; i++) {
@@ -83,7 +87,9 @@ export function renderGenre() {
       </button>
   `;
   });
-  document.querySelector(".genre-bar").innerHTML = genreHTML;
+  const genreBar = document.querySelector(".genre-bar");
+  if (!genreBar) return;
+  genreBar.innerHTML = genreHTML;
 }
 
 export function renderType() {
@@ -96,7 +102,9 @@ export function renderType() {
     <button class="type-name">${typeContent}</button>
   `;
   });
-  document.querySelector(".type-chip").innerHTML = typeHTML;
+  const typeChip = document.querySelector(".type-chip");
+  if (!typeChip) return;
+  typeChip.innerHTML = typeHTML;
 }
 
 function generateGenreData() {

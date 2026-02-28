@@ -52,6 +52,12 @@ body {
   letter-spacing: 0.5px;
 }
 
+.type-name.active {
+  background: #fff;
+  color: #000;
+  border: none;
+}
+
 /* ========================= */
 /* MAIN */
 /* ========================= */
@@ -74,7 +80,7 @@ body {
 }
 
 .genre-chip,
-.add-content {
+.main-action-btn {
   background: var(--color-surface);
   padding: 12px 18px;
   border-radius: 40px;
@@ -83,13 +89,19 @@ body {
   align-items: center;
   gap: 12px;
   transition: all 0.25s ease;
+  margin-right: 10px;
 }
 
 .genre-chip:hover,
-.add-content:hover {
+.main-action-btn:hover {
   border-color: var(--color-accent);
   background: #eaeaea;
   transform: translateY(-2px);
+}
+
+.genre-chip.active {
+  background: #000;
+  color: white;
 }
 
 .genre-name {
@@ -104,14 +116,26 @@ body {
   gap: 4px;
 }
 
+
 .genre-progress .block {
   height: 8px;
   border-radius: 2px;
-  background: #d0d0d0;
+  border: 1px solid;
+}
+
+.genre-chip.active .block{
+  border: 1px solid #fff;
+  background: #000;
 }
 
 .genre-progress .filled {
   background: #000000;
+  border: none;
+}
+
+.genre-chip.active .filled{
+  background: #fff;
+  border: none;
 }
 
 /* ========================= */
